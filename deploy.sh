@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 source /etc/profile
-cd ~/biliob_backend
+cd /biliob_test/biliob_backend
 git checkout master
 git pull
 mvn -DfailIfNoTests=false -Dtest package
