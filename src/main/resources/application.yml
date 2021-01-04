@@ -1,0 +1,49 @@
+logging:
+  pattern:
+    console: '%d{"yyyy-MM-dd HH:mm:ss"} [%p] [%4.4t] (%30.30F:%4.4L\) - [%X{user}@%X{ip}] %m%n'
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 50MB
+      max-request-size: 50MB
+  mvc:
+    dispatch-options-request: true
+  data:
+    mongodb:
+      uri: ${BILIOB_MONGO_URL}
+    redis:
+      repositories:
+        enabled: false
+  redis:
+    lettuce:
+      pool:
+        max-active: -1
+        max-idle: 8
+        min-idle: 0
+        max-wait: -1
+      shutdown-timeout: 30000
+    url: ${BILIOB_REDIS_CONNECTION_STRING}
+    timeout: 30000
+  mail:
+    host: smtp.biliob.com
+    password: ${BILIOB_MAIL_PASSWORD}
+    username: jannchie@admin.biliob.com
+    port: 465
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          socketFactory:
+            fallback: false
+            class: javax.net.ssl.SSLSocketFactory
+          starttls.enable: true
+          auth: true
+          ssl:
+            enable: true
+server:
+  port: ${BILIOB_BACKEND_PORT}
+  servlet:
+    session:
+      cookie:
+        max-age: 86400000000
